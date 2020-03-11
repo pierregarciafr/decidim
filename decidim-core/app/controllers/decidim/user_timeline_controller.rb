@@ -5,6 +5,7 @@ module Decidim
   class UserTimelineController < Decidim::ApplicationController
     include Paginable
     include UserGroups
+    include FilterResource
 
     helper Decidim::ResourceHelper
     helper_method :activities, :user
@@ -28,13 +29,18 @@ module Decidim
           organization: current_organization,
           resource_type: "all",
           scopes: current_user.interested_scopes,
-          follows: follows
+          follows: follows,
+          resource_name: filter.resource_type
         ).run
       )
     end
 
     def follows
       @follows ||= Decidim::Follow.where(user: user)
+    end
+
+    def default_filter_params
+      { resource_type: nil }
     end
   end
 end
