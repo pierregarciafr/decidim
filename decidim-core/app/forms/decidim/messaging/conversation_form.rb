@@ -14,10 +14,10 @@ module Decidim
 
       def recipient
         @recipient ||= Decidim::User
+                       .includes(:following_follows)
                        .where.not(id: current_user.id)
                        .where(organization: current_user.organization)
                        .where(id: recipient_id)
-                       .where(notification_types: ["all", "own-only"])
       end
 
       def check_recipient

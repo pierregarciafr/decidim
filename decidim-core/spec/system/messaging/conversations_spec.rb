@@ -254,7 +254,7 @@ describe "Conversations", type: :system do
 
     describe "on mentioned list" do
       context "when someone has disabled notifications" do
-        let!(:interlocutor2) { create(:user, :confirmed, organization: organization, notification_types: "none") }
+        let!(:interlocutor2) { create(:user, :confirmed, organization: organization, direct_message_types: "followed-only") }
 
         it "can't be selected on the mentioned list", :slow do
           visit_inbox
@@ -265,7 +265,7 @@ describe "Conversations", type: :system do
           sleep(2)
           find(".js-multiple-mentions").fill_in with: "@"
           page.execute_script('$(".js-multiple-mentions")[0].dispatchEvent(new Event("keydown"));$(".js-multiple-mentions")[0].dispatchEvent(new Event("keyup"));')
-          expect(page).to have_selector(".tribute-container .disabled-notifications")
+          expect(page).to have_selector(".tribute-container .disabled-tribute-element")
         end
       end
     end
