@@ -260,14 +260,10 @@ module Decidim
     def resources_select(name, collection, options = {})
       resources =
         collection
-        .pluck(:resource_type).uniq
-        .map { |r| [r.split("::").last.gsub(/(?!^[A-ZÑÁ-Ú])[A-ZÑÁ-Ú]/) { |l| " " + l }, r] }
-        .reject do |r|
-          case r[0]
-          when "Participatory Process", "Component", "Survey", "Result", "Assembly", "Consultation"
-            true
-          end
-        end
+        .select(:resource_type).distinct
+        .pluck(:resource_type)
+        .map { |r| [I18n.t(r.split("::").last.underscore, scope: "decidim.components.component_order_selector.order"), r] }
+        .reject { |r| r[1].match?(/ParticipatoryProcess|Component|Survey|Result|Assembly|Consultation|DummyResource|missing\stranslation/i) }
         .sort
 
       select(name, @template.options_for_select(resources, selected: options[:selected]), options)
