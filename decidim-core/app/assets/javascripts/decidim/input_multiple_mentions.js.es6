@@ -41,7 +41,7 @@ $(() => {
 
   /* eslint no-use-before-define: ["error", { "variables": false }]*/
   let remoteSearch = function(text, cb) {
-    let query = `{users(filter:{wildcard:"${text}",type:"user"}){id,nickname,name,avatarUrl,disabledNotifications}}`;
+    let query = `{users(filter:{wildcard:"${text}",type:"user"}){id,nickname,name,avatarUrl,...on User{directMessagesEnabled}}}`;
     $.post("/api", {query: query}).
       then((response) => {
         let data = response.data.users || {};
@@ -91,11 +91,12 @@ $(() => {
           <img src="${item.original.avatarUrl}" alt="${item.original.name}" height="35" width="35" style="border-radius: 50%;">&nbsp;
           <b>${item.original.name}</b>
           <input type="hidden" name="recipient_id[]" value="${item.original.id}">
+          <b class="float-right">X</b>
         </label>
       `;
 
       // Append new recipient to DOM
-      if (item.original.disabledNotifications === "") {
+      if (item.original.directMessagesEnabled === "") {
         $multipleMentionRecipientsContainer.append(recipientLabel);
         $multipleMentionContainer.val("");
       }
@@ -109,7 +110,7 @@ $(() => {
         let icons = window.DecidimComments.assets["icons.svg"];
         svg = `<span class="is-group">${item.original.membersCount}x <svg class="icon--members icon"><use xlink:href="${icons}#icon-members"/></svg></span>`;
       }
-      let disabledElementClass = ((item.original.disabledNotifications === "") ? "" : "disabled-tribute-element")
+      let disabledElementClass = ((item.original.directMessagesEnabled === "") ? "" : "disabled-tribute-element")
       return `<div class="tribute-item ${item.original.__typename} ${disabledElementClass}">
       <span class="author__avatar"><img src="${item.original.avatarUrl}" alt="author-avatar"></span>
         <strong>${item.original.nickname}</strong>
@@ -168,6 +169,9 @@ $(() => {
     setupRecipientEvents($multipleMentionRecipientsContainer);
   }
 
+  // The function will be called from debounce method in order to set some delay
+  // between each input box key press before to call search method
+  // This is to avoid overcharge server with unnecessary search calls
   setTimeout(function() {
     tribute.attach($multipleMentionContainer);
   }, 1000);
