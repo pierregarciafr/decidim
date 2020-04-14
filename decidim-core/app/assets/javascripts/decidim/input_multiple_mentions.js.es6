@@ -4,6 +4,7 @@ $(() => {
   const $multipleMentionContainer = $(".js-multiple-mentions");
   const $multipleMentionRecipientsContainer = $(".js-multiple-mentions-recipients");
   const nodatafound = $multipleMentionContainer.attr("data-noresults");
+  const directMessageDisabled = $multipleMentionContainer.attr("data-direct-messages-disabled");
 
   const maxRecipients = 9;
   let mentionsCount = 0;
@@ -88,18 +89,23 @@ $(() => {
       // Set recipient profile view
       let recipientLabel = `
         <label style="padding: 0 0 10px 0">
-          <img src="${item.original.avatarUrl}" alt="${item.original.name}" height="35" width="35" style="border-radius: 50%;">&nbsp;
+          <img src="${item.original.avatarUrl}" alt="${item.original.name}" height="35" width="35" style="border-radius: 50%;" aria-label="${item.original.name}">&nbsp;
           <b>${item.original.name}</b>
           <input type="hidden" name="recipient_id[]" value="${item.original.id}">
-          <b class="float-right">X</b>
+          <div class="float-right">&times;</div>
         </label>
       `;
 
       // Append new recipient to DOM
-      if (item.original.directMessagesEnabled === "") {
-        $multipleMentionRecipientsContainer.append(recipientLabel);
+      if (item.original.directMessagesEnabled === "true") {
+        $multipleMentionRecipientsContainer.append($(recipientLabel));
         $multipleMentionContainer.val("");
       }
+
+      // In order to add tabindex accessibility control to each recipient in list
+      $multipleMentionRecipientsContainer.find("label").each(function(index) {
+        $(this).find("div").attr("tabIndex", 0).attr("aria-controls", 0).attr("aria-label", "Close").attr("role", "tab");
+      });
 
       // Clean input
       return "";
@@ -110,12 +116,14 @@ $(() => {
         let icons = window.DecidimComments.assets["icons.svg"];
         svg = `<span class="is-group">${item.original.membersCount}x <svg class="icon--members icon"><use xlink:href="${icons}#icon-members"/></svg></span>`;
       }
-      let disabledElementClass = ((item.original.directMessagesEnabled === "") ? "" : "disabled-tribute-element")
+      let disabledElementClass = ((item.original.directMessagesEnabled === "true") ? "" : "disabled-tribute-element")
+      let disabledElementMessage = ((item.original.directMessagesEnabled === "true") ? "" : `&nbsp;<span class="disabled-tribute-element-info">${directMessageDisabled}</span>`)
       return `<div class="tribute-item ${item.original.__typename} ${disabledElementClass}">
       <span class="author__avatar"><img src="${item.original.avatarUrl}" alt="author-avatar"></span>
         <strong>${item.original.nickname}</strong>
         <small>${item.original.name}</small>
         ${svg}
+        ${disabledElementMessage}
       </div>`;
     }
   });
@@ -151,7 +159,15 @@ $(() => {
   };
 
   let setupRecipientEvents = function($element) {
+    // Allow delete with click on element in recipients list
     $element.on("click", (event) => {
+      let $target = event.target.parentNode;
+      if ($target.tagName === "LABEL") {
+        deleteRecipient($target);
+      }
+    });
+    // Allow delete with keypress on element in recipients list
+    $element.on("keypress", (event) => {
       let $target = event.target.parentNode;
       if ($target.tagName === "LABEL") {
         deleteRecipient($target);
@@ -162,17 +178,11 @@ $(() => {
   // Call only if we have containter to bind events to
   if ($multipleMentionContainer.length) {
     setupEvents($multipleMentionContainer);
+    tribute.attach($multipleMentionContainer);
   }
 
   // Call only if we have containter to bind events to
   if ($multipleMentionRecipientsContainer.length) {
     setupRecipientEvents($multipleMentionRecipientsContainer);
   }
-
-  // The function will be called from debounce method in order to set some delay
-  // between each input box key press before to call search method
-  // This is to avoid overcharge server with unnecessary search calls
-  setTimeout(function() {
-    tribute.attach($multipleMentionContainer);
-  }, 1000);
 });
