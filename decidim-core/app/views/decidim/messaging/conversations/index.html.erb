@@ -64,7 +64,7 @@
                       <% if conversation.interlocutors(current_user).count == 1 %>
                         <%= image_tag conversation.interlocutors(current_user).first.avatar_url, alt: t("decidim.author.avatar") %>
                       <% else %>
-                        <%= image_tag current_user.avatar.default_url, alt: t("decidim.author.avatar") %>
+                        <%= image_tag current_user.avatar.default_multiuser_url, alt: t("decidim.author.avatar") %>
                       <% end %>
                     </div>
                     <span class="text-medium mt-xs"><%= Date::ABBR_DAYNAMES[conversation.created_at.wday] %> <%= conversation.created_at.wday %></span>
@@ -92,12 +92,12 @@
                         <% end %>
                       </strong>
                     </span>
-                    <% if conversation.unread_count(current_user) > 0 %>
-                      <span class="card--list__counter">
-                        <span><%= conversation.unread_count(current_user) %></span>
-                      </span>
-                    <% end %>
                   </div>
+                  <% if conversation.unread_count(current_user) > 0 %>
+                    <span class="unread_message__counter">
+                      <span><%= conversation.unread_count(current_user) %></span>
+                    </span>
+                  <% end %>
                   <div class="right center mr-s">
                     <%= link_to decidim.conversation_path(conversation), id: "chevron", class: "user-header__avatar", "data-tabs-target": "conversation" do %>
                       <%= icon "chevron-right", class: "card__link icon--big" %>

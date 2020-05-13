@@ -57,12 +57,8 @@ describe "User timeline", type: :system do
     create(:action_log, action: "publish", visibility: "all", resource: resource3, organization: organization)
   end
 
-  let!(:resource_types) do
-    Decidim::ActionLog
-      .select(:resource_type).distinct
-      .pluck(:resource_type)
-      .map { |r| r.split("::").last }
-      .reject { |r| r.match?(/ParticipatoryProcess|Component|Survey|Result|Assembly|Consultation|DummyResource|missing\stranslation/i) }
+  let(:resource_types) do
+    %w(Collaborative\ Draft Comment Debate Initiative Meeting Post Proposal Question)
   end
 
   before do

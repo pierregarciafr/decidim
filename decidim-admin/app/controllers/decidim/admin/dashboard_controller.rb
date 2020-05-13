@@ -6,6 +6,7 @@ module Decidim
     #
     class DashboardController < Decidim::Admin::ApplicationController
       helper_method :latest_action_logs
+      helper_method :users_counter
       helper_method :metrics_presenter
 
       def show
@@ -35,7 +36,7 @@ module Decidim
         last_week = Time.zone.today.prev_week
         last_month = Time.zone.today.prev_month
 
-        @result = {
+        {
           total_admins_last_24: users_count(last_day, true),
           total_admins_last_week: users_count(last_week, true),
           total_admins_last_month: users_count(last_month, true),
