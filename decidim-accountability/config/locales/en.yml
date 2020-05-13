@@ -36,6 +36,7 @@ en:
         confirm_destroy: Are you sure you want to delete this %{name}?
         destroy: Delete
         edit: Edit
+        import_csv: Import CSV
         new: New %{name}
         preview: Preview
         timeline_entries: Project evolution
@@ -43,6 +44,14 @@ en:
       admin:
         exports:
           results: Results
+        import_results:
+          new:
+            import: Import
+            info: "<p>The CSV file with data to import must have the same CSV format as the generated file from the export process.<br/>The CSV file must have at least the following fields to be exported correctly:</p><ul><li>id</li><li>category/id</li><li>scope/id</li><li>parent/id</li><li>title/I18N</li><li>description/I18N</li><li>start_date (format YYYY-MM-DD)</li><li>end_date (format YYYY-MM-DD)</li><li>status/id</li><li>progress</li><li>proposals_ids</li></ul><p>The import process will look for matches in the result table using the id field. Thanks to this, you can generate an export in the platform, make the desired modifications and make the import process in the same platform to update the existent records.</p>"
+            title: Import results from CSV
+        imports:
+          create:
+            success: The file has begun importing. You will receive an email in the next few minutes with the result of the import
         models:
           result:
             name: Result
@@ -112,6 +121,13 @@ en:
         value_types:
           parent_presenter:
             not_found: 'The parent was not found on the database (ID: %{id})'
+      import_mailer:
+        import:
+          errors: Errors
+          errors_present: There was a problem importing results
+          row_number: Row
+          subject: Successful import of results
+          success: Successful import of results. You can review the results in the administration interface.
       last_activity:
         new_result_at_html: "<span>New result at %{link}</span>"
       models:
