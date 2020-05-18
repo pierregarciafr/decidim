@@ -41,8 +41,13 @@ $(() => {
   }
 
   /* eslint no-use-before-define: ["error", { "variables": false }]*/
+  /* eslint no-unused-expressions: 0 */
   let remoteSearch = function(text, cb) {
-    let query = `{users(filter:{wildcard:"${text}",type:"user"}){id,nickname,name,avatarUrl,...on User{directMessagesEnabled}}}`;
+    let exclusionIds = "";
+    $multipleMentionRecipientsContainer.find("input[name^='recipient_id']").each(function(index) {
+      (exclusionIds.length > 1) ? (exclusionIds += `,${$(this).val()}`) : (exclusionIds += $(this).val());
+    });
+    let query = `{users(filter:{wildcard:"${text}",type:"user",exclusion:"${exclusionIds}"}){id,nickname,name,avatarUrl,...on User{directMessagesEnabled}}}`;
     $.post("/api", {query: query}).
       then((response) => {
         let data = response.data.users || {};
@@ -148,7 +153,7 @@ $(() => {
         // We need to move the container to the wrapper selected
         let $tribute = $(".tribute-container");
         $tribute.appendTo($parent);
-        // // Remove the inline styles, relative to absolute positioning
+        // Remove the inline styles, relative to absolute positioning
         $tribute.removeAttr("style");
         // Parent adaptation
         $parent.addClass("is-active");
