@@ -106,6 +106,7 @@ The use case that originated this change is the persistence of the user's gender
 - **decidim-initiatives**: Allow admins to export initiatives [\#6070](https://github.com/decidim/decidim/pull/6070)
 - **decidim-elections**: Add questions and answers to elections [\#6129](https://github.com/decidim/decidim/pull/6129)
 - **decidim-forms**: Request confirmation when leaving the form half-answered [\#6118](https://github.com/decidim/decidim/pull/6118)
+- **decidim-elections**: Publish and unpublish an election [\#6152](https://github.com/decidim/decidim/pull/6152)
 - **decidim-initiatives**: Add areas to initiatives. [\#6111](https://github.com/decidim/decidim/pull/6111)
 - **decidim-meetings**: Let users create meetings [\#6095](https://github.com/decidim/decidim/pull/6095)
 - **decidim-elections**: Add import proposals to answers [\6163](https://github.com/decidim/decidim/pull/6163)
@@ -170,6 +171,7 @@ The use case that originated this change is the persistence of the user's gender
 - **decidim-core**: Avoid server hanging up when rendering newsletter templates previews on develoment or test env [\#6096](https://github.com/decidim/decidim/pull/6096)
 - **decidim-initiatives**: Fix attachments related module inclusion [\#6140](https://github.com/decidim/decidim/pull/6140)
 - **decidim-core**: Fix scopes filter when a participatory space scope has subscopes [\#6110](https://github.com/decidim/decidim/pull/6110)
+- **decidim-core**, **decidim-assemblies**: Fix the edit link test failing seemingly randomly [\#6161](https://github.com/decidim/decidim/pull/6161)
 
 ### Removed
 
