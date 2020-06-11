@@ -191,7 +191,8 @@ module Decidim
               expect(authorizer.data).to include(extra_explanation: { key: "extra_explanation",
                                                                       params: { scope: "decidim.verifications.dummy_authorization",
                                                                                 count: 2,
-                                                                                postal_codes: "1234, 4567" } })
+                                                                                postal_codes: "1234, 4567",
+                                                                                scope_id: nil } })
             end
           end
 
@@ -208,7 +209,8 @@ module Decidim
               expect(authorizer.data).to include(extra_explanation: { key: "extra_explanation",
                                                                       params: { scope: "decidim.verifications.dummy_authorization",
                                                                                 count: 2,
-                                                                                postal_codes: "2345, 4567" } })
+                                                                                postal_codes: "2345, 4567",
+                                                                                scope_id: nil } })
             end
           end
 
