@@ -19,12 +19,8 @@ module Decidim
             case permission_action.action
             when :create, :read
               allow!
-            when :update, :publish
-              toggle_allow(election)
-            when :delete
+            when :delete, :update, :publish, :unpublish
               allow_if_not_started
-            when :unpublish
-              allow_if_not_started_or_finished
             end
           end
 
@@ -39,10 +35,6 @@ module Decidim
 
         def allow_if_not_started
           toggle_allow(election && !election.started?)
-        end
-
-        def allow_if_not_started_or_finished
-          toggle_allow(election && (!election.started? || election.finished?))
         end
       end
     end
