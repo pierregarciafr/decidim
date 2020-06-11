@@ -17,6 +17,10 @@ module Decidim
       def started?
         start_time <= Time.current
       end
+
+      def allow_resource_permissions?
+        true
+      end
     end
   end
 end

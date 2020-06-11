@@ -37,6 +37,8 @@ en:
   decidim:
     components:
       elections:
+        actions:
+          vote: Vote
         name: Elections
         settings:
           global:
