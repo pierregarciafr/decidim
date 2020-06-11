@@ -110,10 +110,12 @@ The use case that originated this change is the persistence of the user's gender
 - **decidim-initiatives**: Add areas to initiatives. [\#6111](https://github.com/decidim/decidim/pull/6111)
 - **decidim-meetings**: Let users create meetings [\#6095](https://github.com/decidim/decidim/pull/6095)
 - **decidim-elections**: Add import proposals to answers [\6163](https://github.com/decidim/decidim/pull/6163)
+- **decidim-elections**: Add authorizations for the vote action [\#6181](https://github.com/decidim/decidim/pull/6181)
 
 ### Changed
 
 - **decidim-admin**, **decidim-core**: Improve explanation on image management on Layout Appearance. [\#6089](https://github.com/decidim/decidim/pull/6089)
+- **decidim-surveys**: Remove decidim-surveys legacy tables after migrating to decidim-forms. [\#6178](https://github.com/decidim/decidim/pull/6178)
 - **decidim-initiatives**: Change initiatives committee request permission to prevent homepage redirection. [\#6115](https://github.com/decidim/decidim/pull/6115)
 - **decidim-accountability**, **decidim-core**, **decidim-meetings**, **decidim-proposals**: Optimize queries for performance in Homepage, process page, proposals page and coauthorable cell. [\#5903](https://github.com/decidim/decidim/pull/5903)
 - **decidim-assemblies**: Replace current meetings hook with highlighted elements hook [\#5897](https://github.com/decidim/decidim/pull/5897)
@@ -172,6 +174,7 @@ The use case that originated this change is the persistence of the user's gender
 - **decidim-initiatives**: Fix attachments related module inclusion [\#6140](https://github.com/decidim/decidim/pull/6140)
 - **decidim-core**: Fix scopes filter when a participatory space scope has subscopes [\#6110](https://github.com/decidim/decidim/pull/6110)
 - **decidim-core**, **decidim-assemblies**: Fix the edit link test failing seemingly randomly [\#6161](https://github.com/decidim/decidim/pull/6161)
+- **decidim-participatory_processes**: Fix the edit link test failing randomly for participatory processes spec [\#6180](https://github.com/decidim/decidim/pull/6180)
 
 ### Removed
 
