@@ -107,6 +107,7 @@ The use case that originated this change is the persistence of the user's gender
 - **decidim-elections**: Add questions and answers to elections [\#6129](https://github.com/decidim/decidim/pull/6129)
 - **decidim-forms**: Request confirmation when leaving the form half-answered [\#6118](https://github.com/decidim/decidim/pull/6118)
 - **decidim-initiatives**: Add areas to initiatives. [\#6111](https://github.com/decidim/decidim/pull/6111)
+- **decidim-elections**: Add authorizations for the vote action [\#6181](https://github.com/decidim/decidim/pull/6181)
 
 ### Changed
 
