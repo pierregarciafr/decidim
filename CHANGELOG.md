@@ -4,6 +4,8 @@
 
 ### Added
 
+- **decidim-elections**: Add authorizations for the vote action [\#6181](https://github.com/decidim/decidim/pull/6181)
+
 ### Changed
 
 ### Fixed
