@@ -46,7 +46,7 @@ module Decidim
             form.send(:translated, form_method, name, options)
           elsif form_method == :collection_radio_buttons
             render_enum_form_field(form, attribute, name, i18n_scope, options)
-          elsif form_method == :scope_field
+          elsif form_method == :scope_field || attribute.type.to_sym == :scope
             scopes_picker_field(form, name)
           else
             form.send(form_method, name, options)

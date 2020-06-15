@@ -509,7 +509,6 @@ en:
         initiative:
           attachments: Attachments
           committee_members: Committee members
-          components: Components
           information: Information
       initiative_creation_header:
         back: Back

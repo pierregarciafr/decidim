@@ -7,6 +7,7 @@ module Decidim
 
       # Controller used to manage the initiatives
       class InitiativesController < Decidim::Initiatives::Admin::ApplicationController
+        include Decidim::Admin::ParticipatorySpaceAdminContext
         include Decidim::Initiatives::NeedsInitiative
         include Decidim::Initiatives::SingleInitiativeType
         include Decidim::Initiatives::TypeSelectorOptions

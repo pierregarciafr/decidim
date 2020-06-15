@@ -13,9 +13,11 @@ module Decidim
 
     let!(:organization) { create(:organization) }
     let!(:participatory_space) { create(:participatory_process, organization: organization) }
+    let!(:component) { create(:component, participatory_space: participatory_space) }
 
     before do
       allow(helper).to receive(:current_participatory_space).and_return(participatory_space)
+      allow(helper).to receive(:current_component).and_return(component)
     end
 
     describe "#filter_scopes_values" do

@@ -87,6 +87,7 @@
 - **decidim-meetings**: Let users create meetings [\#6095](https://github.com/decidim/decidim/pull/6095)
 - **decidim-elections**: Add import proposals to answers [\6163](https://github.com/decidim/decidim/pull/6163)
 - **decidim-elections**: Add authorizations for the vote action [\#6181](https://github.com/decidim/decidim/pull/6181)
+- **decidim-budgets**: Add complex voting on budgets [\#5993](https://github.com/decidim/decidim/pull/5993)
 
 ### Changed
 

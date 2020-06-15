@@ -10,6 +10,8 @@ Decidim.register_component(:budgets) do |component|
   component.permissions_class_name = "Decidim::Budgets::Permissions"
   component.component_form_class_name = "Decidim::Budgets::Admin::ComponentForm"
 
+  component.allow_parent = true
+
   component.data_portable_entities = ["Decidim::Budgets::Order"]
 
   component.newsletter_participant_entities = ["Decidim::Budgets::Order"]
@@ -52,6 +54,8 @@ Decidim.register_component(:budgets) do |component|
   end
 
   component.settings(:global) do |settings|
+    settings.attribute :scopes_enabled, type: :boolean, default: false
+    settings.attribute :scope_id, type: :scope
     settings.attribute :projects_per_page, type: :integer, default: 12
     settings.attribute :total_budget, type: :integer, default: 100_000_000
     settings.attribute :vote_rule_threshold_percent_enabled, type: :boolean, default: true
@@ -117,5 +121,7 @@ Decidim.register_component(:budgets) do |component|
       )
       Decidim::Comments::Seed.comments_for(project)
     end
+
+    component
   end
 end
