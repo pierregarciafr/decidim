@@ -29,14 +29,10 @@ module Decidim
       def action_string
         case action
         when "publish", "unpublish"
-          "decidim.elections.admin_log.election.#{action}"
+          "decidim.admin_log.election.#{action}"
         else
           super
         end
-      end
-
-      def has_diff?
-        action == "unpublish" || super
       end
     end
   end
