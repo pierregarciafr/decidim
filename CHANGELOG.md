@@ -89,6 +89,7 @@
 - **decidim-elections**: Add authorizations for the vote action [\#6181](https://github.com/decidim/decidim/pull/6181)
 - **decidim-budgets**: Add complex voting on budgets [\#5993](https://github.com/decidim/decidim/pull/5993)
 - **decidim-elections**: Add authorizations for the vote action [\#6181](https://github.com/decidim/decidim/pull/6181)
+- **decidim-elections**: Add import proposals to answers [\6163](https://github.com/decidim/decidim/pull/6163)
 
 ### Changed
 
@@ -108,8 +109,17 @@
 
 ### Fixed
 
+- **decidim-comments**: Fix comments JS errors and delays [\#6193](https://github.com/decidim/decidim/pull/6193)
+- **decidim-elections**: Improve navigation consistency in the admin zone for elections questions and answers [\#6139](https://github.com/decidim/decidim/pull/6139)
+- **decidim-participatory_processes**: Fix rubocop errors arising from capybara upgrade [\#6197](https://github.com/decidim/decidim/pull/6197)
+- **decidim-assemblies**: Fix rubocop errors arising from capybara upgrade [\#6197](https://github.com/decidim/decidim/pull/6197)
+- **decidim-proposals**: Fix rubocop errors arising from capybara upgrade [\#6197](https://github.com/decidim/decidim/pull/6197)
+- **decidim-dev**: Fix rubocop errors arising from capybara upgrade [\#6197](https://github.com/decidim/decidim/pull/6197)
+- **decidim-core**: Fix rubocop errors arising from capybara upgrade [\#6197](https://github.com/decidim/decidim/pull/6197)
+- **decidim-forms**: Fix rubocop errors arising from capybara upgrade [\#6197](https://github.com/decidim/decidim/pull/6197)
+
 ### Removed
 
 ## Previous versions
 
-Please check [0.22-stable](https://github.com/decidim/decidim/blob/0.22-stable/CHANGELOG.md) for previous changes.
+Please check [release/0.22-stable](https://github.com/decidim/decidim/blob/release/0.22-stable/CHANGELOG.md) for previous changes.
