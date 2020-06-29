@@ -136,6 +136,13 @@ en:
           update:
             invalid: There was a problem updating this question
             success: Question successfully updated
+      election_m:
+        take_part: Take part
+      elections:
+        count:
+          elections_count:
+            one: "%{count} election"
+            other: "%{count} elections"
       models:
         answer:
           fields:
