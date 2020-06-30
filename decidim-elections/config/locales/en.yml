@@ -143,6 +143,10 @@ en:
           elections_count:
             one: "%{count} election"
             other: "%{count} elections"
+        show:
+          back: All elections
+          until: Election is active until
+          vote: Vote
       models:
         answer:
           fields:
