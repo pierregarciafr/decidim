@@ -28,7 +28,7 @@ module Decidim
       attr_reader :debate, :form
 
       def organization
-        @organization = form.current_component.organization
+        @organization ||= form.current_component.organization
       end
 
       def i18n_field(field)
