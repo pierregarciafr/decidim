@@ -20,6 +20,8 @@ module Decidim
           send_notification_to_author_followers
           send_notification_to_space_followers
         end
+
+        follow_debate
         broadcast(:ok, debate)
       end
 
@@ -28,7 +30,7 @@ module Decidim
       attr_reader :debate, :form
 
       def organization
-        @organization = form.current_component.organization
+        @organization ||= form.current_component.organization
       end
 
       def i18n_field(field)
@@ -77,6 +79,13 @@ module Decidim
             type: "participatory_space"
           }
         )
+      end
+
+      def follow_debate
+        follow_form = Decidim::FollowForm
+                      .from_params(followable_gid: debate.to_signed_global_id.to_s)
+                      .with_context(current_user: debate.author)
+        Decidim::CreateFollow.call(follow_form, debate.author)
       end
     end
   end

@@ -13,7 +13,7 @@ describe Decidim::Debates::DebateForm do
     }
   end
   let(:participatory_process) { create :participatory_process, organization: organization }
-  let(:current_component) { create :component, participatory_space: participatory_process }
+  let(:current_component) { create :component, participatory_space: participatory_process, manifest_name: "debates" }
   let(:title) { "My title" }
   let(:description) { "My description" }
   let(:category) { create :category, participatory_space: participatory_process }
@@ -44,5 +44,23 @@ describe Decidim::Debates::DebateForm do
     let(:category_id) { category.id + 10 }
 
     it { is_expected.not_to be_valid }
+  end
+
+  describe "map_model" do
+    subject { described_class.from_model(debate).with_context(context) }
+
+    let(:debate) { create :debate, category: category, component: current_component }
+
+    it "sets the title" do
+      expect(subject.title).to be_present
+    end
+
+    it "sets the description" do
+      expect(subject.description).to be_present
+    end
+
+    it "sets the category" do
+      expect(subject.category).to be_present
+    end
   end
 end
