@@ -4,6 +4,8 @@ en:
     attributes:
       debate:
         category_id: Category
+        closed_at: Closed at
+        conclusions: Conclusions
         decidim_category_id: Category
         description: Description
         end_time: Ends at
@@ -69,6 +71,10 @@ en:
           create: "%{user_name} created the %{resource_name} debate on the %{space_name} space"
           update: "%{user_name} updated the %{resource_name} debate on the %{space_name} space"
       debates:
+        close_debate_modal:
+          close: Close
+          description: Some text explaining what it means to close a debate.
+          send: Send
         count:
           debates_count:
             one: "%{count} debate"
@@ -105,6 +111,9 @@ en:
           title: New debate
         show:
           back: Back to list
+          close_debate: Close debate
+          debate_closed: Closed
+          debate_conclusions_are: "The debate was closed on %{date} with these conclusions:"
           edit_debate: Edit debate
         update:
           invalid: There was a problem updating the debate.

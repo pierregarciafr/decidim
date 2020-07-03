@@ -33,6 +33,7 @@
 // = require_self
 // = require decidim/assets
 // = require decidim/floating_help
+// = require decidim/character_counter
 
 /* globals svg4everybody */
 

@@ -1,0 +1,15 @@
+  $(() => {
+    $(".with-character-count").each((idx, container) => {
+      let $container = $(container);
+      let minLength = $container.attr("minlength");
+      let maxLength = $container.attr("maxlength");
+      let counterId = $container.attr('id') + '_counter';
+      $container.parent().append('<p class="character-count" id="' + counterId + '"><span>' + maxLength + '</span> <%= I18n.t("decidim.core.characters_remaining") %></p>');
+
+      $container.keyup(function() {
+        var length = $(this).val().length;
+        var length = maxLength-length;
+        $('#' + counterId + ' span').text(length);
+      });
+    });
+  });

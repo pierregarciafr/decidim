@@ -386,6 +386,7 @@ en:
       actions:
         login_before_access: Please, login with your account before access
         unauthorized: You are not authorized to perform this action
+      characters_remaining: characters remaining.
     data_portability:
       export:
         ready: Ready
