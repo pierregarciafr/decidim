@@ -445,7 +445,7 @@ module Decidim
 
         it "adds a pattern" do
           expect(parsed.css("input[pattern='^(.|[\n\r]){150,}$']")).not_to be_empty
-          expect(output).not_to include("minlength")
+          expect(parsed.css("input[minlength='150']")).not_to be_nil
         end
       end
 

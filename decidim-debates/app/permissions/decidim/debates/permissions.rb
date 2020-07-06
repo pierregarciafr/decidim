@@ -32,11 +32,13 @@ module Decidim
       end
 
       def can_edit_debate?
-        allow! if debate&.editable_by?(user)
+        return allow! if debate&.editable_by?(user)
+        disallow!
       end
 
       def can_close_debate?
-        allow! if debate&.closeable_by?(user)
+        return allow! if debate&.closeable_by?(user)
+        disallow!
       end
 
       def debate

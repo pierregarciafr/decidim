@@ -40,7 +40,7 @@ edit_link(
         <%= t(".close_debate") %>
       </button>
     <% elsif admin_allowed_to?(:close, :debate, debate: debate) %>
-      <%= link_to t(".close_debate"), resource_locator(debate).admin_action("close"), class: "button hollow expanded button-sc button--icon follow-button" %>
+      <%= link_to t(".close_debate"), Decidim::EngineRouter.admin_proxy(debate.component).edit_debate_debate_close_path(debate_id: debate.id, id: debate.id), class: "button hollow expanded button-sc button--icon follow-button" %>
     <% end %>
     <div class="card extra">
       <div class="card__content">
