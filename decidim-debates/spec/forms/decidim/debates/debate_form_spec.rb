@@ -46,6 +46,24 @@ describe Decidim::Debates::DebateForm do
     it { is_expected.not_to be_valid }
   end
 
+  context "when a debate exists" do
+    subject { described_class.from_model(debate).with_context(context.merge(current_user: user)) }
+
+    let(:debate) { create :debate, category: category, component: current_component }
+
+    describe "when the user is the author" do
+      let(:user) { debate.author }
+
+      it { is_expected.to be_valid }
+    end
+
+    describe "when the user is not the author" do
+      let(:user) { create(:user, organization: organization) }
+
+      it { is_expected.not_to be_valid }
+    end
+  end
+
   describe "map_model" do
     subject { described_class.from_model(debate).with_context(context) }
 
@@ -61,6 +79,10 @@ describe Decidim::Debates::DebateForm do
 
     it "sets the category" do
       expect(subject.category).to be_present
+    end
+
+    it "sets the debate" do
+      expect(subject.debate).to eq(debate)
     end
   end
 end

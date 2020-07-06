@@ -103,15 +103,16 @@ describe "Explore versions", versioning: true, type: :system do
   end
 
   def update_debate
-    form = Decidim::Debates::DebateForm.from_params(
-      title: "New title",
-      description: "New description"
+    form = Decidim::Debates::Admin::DebateForm.from_params(
+      title: { "en" => "New title" },
+      description: { "en" => "New description" },
+      instructions: { "en" => "New isntructions" }
     ).with_context(
       current_organization: organization,
       current_participatory_space: component.participatory_space,
       current_component: component
     )
 
-    Decidim::Debates::UpdateDebate.call(form, debate.author, debate)
+    Decidim::Debates::Admin::UpdateDebate.call(form, debate)
   end
 end

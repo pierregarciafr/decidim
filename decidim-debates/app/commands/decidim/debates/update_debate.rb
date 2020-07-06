@@ -7,12 +7,8 @@ module Decidim
       # Public: Initializes the command.
       #
       # form         - A form object with the params.
-      # current_user - The current user.
-      # debate - the debate to update.
-      def initialize(form, current_user, debate)
+      def initialize(form)
         @form = form
-        @current_user = current_user
-        @debate = debate
       end
 
       # Executes the command. Broadcasts these events:
@@ -23,30 +19,20 @@ module Decidim
       # Returns nothing.
       def call
         return broadcast(:invalid) if form.invalid?
-        return broadcast(:invalid) unless debate.editable_by?(current_user)
+        return broadcast(:invalid) unless form.debate.editable_by?(form.current_user)
 
         update_debate
-        broadcast(:ok, debate)
+        broadcast(:ok, @debate)
       end
 
       private
 
-      attr_reader :form, :debate, :current_user
-
-      def organization
-        @organization ||= form.current_component.organization
-      end
-
-      def i18n_field(field)
-        organization.available_locales.inject({}) do |i18n, locale|
-          i18n.update(locale => field)
-        end
-      end
+      attr_reader :form
 
       def update_debate
         @debate = Decidim.traceability.update!(
-          @debate,
-          current_user,
+          @form.debate,
+          @form.current_user,
           attributes,
           visibility: "public-only"
         )
@@ -55,8 +41,12 @@ module Decidim
       def attributes
         {
           category: form.category,
-          title: i18n_field(form.title),
-          description: i18n_field(form.description)
+          title: {
+            I18n.locale => form.title
+          },
+          description: {
+            I18n.locale => form.description
+          }
         }
       end
     end

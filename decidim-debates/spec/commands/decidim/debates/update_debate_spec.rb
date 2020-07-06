@@ -3,7 +3,11 @@
 require "spec_helper"
 
 describe Decidim::Debates::UpdateDebate do
+<<<<<<< HEAD
   subject { described_class.new(form, user, debate) }
+=======
+  subject { described_class.new(form) }
+>>>>>>> feature/edit-debates
 
   let(:organization) { create :organization, available_locales: [:en, :ca, :es], default_locale: :en }
   let(:participatory_process) { create :participatory_process, organization: organization }
@@ -15,11 +19,21 @@ describe Decidim::Debates::UpdateDebate do
     Decidim::Debates::DebateForm.from_params(
       title: "title",
       description: "description",
+<<<<<<< HEAD
       category_id: category.id
     ).with_context(
       current_organization: organization,
       current_participatory_space: current_component.participatory_space,
       current_component: current_component
+=======
+      category_id: category.id,
+      debate: debate
+    ).with_context(
+      current_organization: organization,
+      current_participatory_space: current_component.participatory_space,
+      current_component: current_component,
+      current_user: user
+>>>>>>> feature/edit-debates
     )
   end
 
@@ -68,13 +82,19 @@ describe Decidim::Debates::UpdateDebate do
     it "sets the title with i18n" do
       subject.call
       expect(debate.title.values.uniq).to eq ["title"]
+<<<<<<< HEAD
       expect(debate.title.keys).to match_array organization.available_locales
+=======
+>>>>>>> feature/edit-debates
     end
 
     it "sets the description with i18n" do
       subject.call
       expect(debate.description.values.uniq).to eq ["description"]
+<<<<<<< HEAD
       expect(debate.description.keys).to match_array organization.available_locales
+=======
+>>>>>>> feature/edit-debates
     end
 
     it "traces the action", versioning: true do
