@@ -83,8 +83,8 @@ en:
           success: Debate successfully closed.
         close_debate_modal:
           close: Close
-          description: Some text explaining what it means to close a debate.
-          send: Send
+          description: What is the summary or conclusion of this debate?
+          send: Close debate
         count:
           debates_count:
             one: "%{count} debate"
