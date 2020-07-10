@@ -14,6 +14,7 @@ module Decidim
 
         validates :debate, presence: true
         validates :conclusions, translatable_presence: true
+        validates :conclusions, translatable_length: { minimum: 10, maximum: 10_000 }
         validate :user_can_close_debate
 
         def closed_at
